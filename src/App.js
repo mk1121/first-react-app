@@ -1,7 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
+import {useEffect, useState} from 'react';
 
 function App() {
+	const product =[
+		{name:'Photoshop',price:'$68'},
+		{name:'Illustrator',price:'$87'},
+		{name:'Premier Pro',price:'$64'},
+		{name:'Pdf Reader',price:'$57'},
+		{name:'Canva',price:'$47'},
+		{name:'Udemy',price:'$68'}
+	];
+	const friends = ['Arif','Josim','Pranto','Tarek','Rakib']
   return (
     <div className="App">
       <header className="App-header">
@@ -9,17 +19,81 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+	  
+	  <Counter></Counter>
+
+	  <Users></Users>
+	  <ul>{
+		  friends.map(
+		  fr => <li>
+			  {fr}</li>
+		  )
+	  }
+	  
+	  </ul>
+  
+	  <My name={product[0]}></My>
+	  <My name={product[1]}></My>
+	  <My name={product[2]}></My>
+	  <My name={product[3]}></My>
+	  <My name={product[4]}></My>
+	  <My name={product[5]}></My>
       </header>
     </div>
   );
 }
+function My(props){
+	let boxStyle={
+		width:"200px",
+		height:"200px",
+		backgroundColor:"white",
+		color:"black",
+		margin:"20px",
+		border:"2px solid yellow",
+		float:"left"
+	}
+	const {name,price} = props.name;
+	return 	(<div style={boxStyle}>
+		<h4>{name || 'name'}</h4>
+		<h1>{price || 'price'}</h1>
+		<button>Buy now</button>	
+		</div>
+	);
+		
+}
+
+function Counter(){
+	const [count, setCount] = useState(0);
+	const clickHandalar = () => {
+	let newClick = count + 1;
+	setCount(newClick);
+	}
+
+return(
+	<div>
+	<h1>Count :{count}</h1>
+	
+	 <button onClick={clickHandalar}>Increse</button>
+	 <button onClick={() => setCount(count -1)}>Dicrease</button>
+	
+	</div>
+)
+}
+
+function Users(){
+	const [user, setCount] = useState(0);
+	useEffect( (use) => {
+	console.log("hi");
+	});
+return (
+	<div>
+	<h1>
+	name:
+	</h1>
+	</div>
+);
+}
 
 export default App;
+
+
