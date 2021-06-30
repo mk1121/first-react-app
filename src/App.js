@@ -19,10 +19,12 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-	  
-	  <Counter></Counter>
+
+	  <Usersdata></Usersdata>
 
 	  <Users></Users>
+	  <Counter></Counter>
+
 	  <ul>{
 		  friends.map(
 		  fr => <li>
@@ -82,18 +84,37 @@ return(
 
 function Users(){
 	const [user, setCount] = useState(0);
-	useEffect( (use) => {
-	console.log("hi");
-	});
+	useEffect( () => {
+	fetch('https://jsonplaceholder.typicode.com/users')
+	.then(res => res.json())
+	.then(data => setCount(data))
+	},[])
 return (
 	<div>
 	<h1>
-	name:
+	name: {user.length}
 	</h1>
 	</div>
 );
 }
-
+function Usersdata(){
+	const [users, setUser] = useState([]);
+	useEffect(() => {
+	fetch('https://jsonplaceholder.typicode.com/users')
+	.then(res => res.json())
+	.then(data => setUser(data))
+	},[])
+	return(
+	<div>
+	<h1> Names: {users.length} </h1>
+	<ul>
+		{
+			users.map( user => <li>{user.name}</li>)
+		}
+	</ul>
+	</div>
+	);
+}
 export default App;
 
 
